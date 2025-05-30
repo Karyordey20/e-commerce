@@ -14,11 +14,15 @@ const verifyToken = async(req,res, next) =>{
      const Token = splitToken[1]
      
      const decodeToken = jwt.verify(Token, `${process.env.ACCESS_TOKEN}`)
+    //  const decodeRefreshToken = jwt.verify(Token, `${process.env.REFRESH_TOKEN}`)
     
      
      if(!decodeToken){
          return res.status(400).json({message:"Access Denied"})
      }
+    //  if(!decodeRefreshToken){
+    //      return res.status(400).json({message:"Access Denied"})
+    //  }
     
      const findUser = await User.findById(decodeToken.id)
      if(!findUser){

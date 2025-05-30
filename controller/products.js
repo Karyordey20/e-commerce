@@ -3,6 +3,9 @@ const Product = require("../models/products")
 const createProduct = async(req,res) =>{
     try {
         const {name,discription,image,price,inStock,category} = req.body
+        if(inStock === false){
+            return res.status(401).json({message:"out of stock"})
+        }
         const newProduct = new Product({name,discription,image,price,inStock,category})
         await newProduct.save()
         res.status(200).json({message:"Successful", newProduct})

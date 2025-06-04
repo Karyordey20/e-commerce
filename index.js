@@ -11,10 +11,12 @@ const productRoute = require("./route/product")
 const orderRoute = require("./route/order")
 const adminValidation = require("./middlewares/admin")
 const refresh = require("./route/refresh")
+const cors = require("cors")
 
 const PORT =process.env.PORT || 8097
 connectDb()
 app.use(express.json())
+app.use(cors())
 
 app.listen(PORT, ()=>{
     console.log(`server started at port ${PORT}`)

@@ -1,11 +1,13 @@
 const User = require("../models/authModel")
 const bcrypt = require("bcrypt")
+const { findOneUser } = require("../services")
 
 const validateAuth = async(req,res, next) =>{
      try {
         const {Name,Email,Password,State,PhoneNumber,Role} =  req.body
    
-       const findUser = await User.findOne({Email}).select("-Password")
+      //  const findUser = await User.findOne({Email}).select("-Password")
+         const findUser = await findOneUser(Email)
        
         if(!Name){
            return res.status(401).json({message:"Name is required"})

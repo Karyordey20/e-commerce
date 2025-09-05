@@ -13,4 +13,7 @@ const authorization =  (req,res) =>{
   res.status(200).json({message: req.findUser })
 }
 
-module.exports = {getAllUsers, authorization}
+const welcomeMessage = (req,res) =>{
+    res.status(200).json({message:"welcome to ecommerce database"})
+}
+module.exports = {getAllUsers, authorization, welcomeMessage}
